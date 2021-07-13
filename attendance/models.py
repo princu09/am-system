@@ -10,7 +10,7 @@ class Employee(models.Model):
     first_Name= models.CharField(max_length=100)
     last_Name= models.CharField(max_length=100)
     salary= models.IntegerField()
-    totalDay = models.IntegerField()
+    totalDay = models.IntegerField(default=0)
     contact= models.IntegerField()
     email= models.EmailField(max_length=254)
     gander= models.CharField(max_length=50)
