@@ -1,0 +1,19 @@
+{% extends './basic.html' %}
+{% load static %}
+{% block title %}Login | Attendance Management{% endblock title %}
+{% block body %}
+<div class="container login">
+    <form class="d-flex flex-column align-items-center" action="/login" method="post">
+    {% csrf_token %}
+        <p class="h3 text-center mb-4">Welcome</p>
+        <img src="{% static 'logo.png' %}" class="mb-5" width="120" alt="Logo">
+        <div class="text-center username mb-3">
+            <input type="text" placeholder="Username" name="username">
+        </div>
+        <div class="text-center password">
+            <input type="password" placeholder="Password" name="password">
+        </div>
+        <button type="submit" class="login-btn my-4 btn btn-md btn-success btn-block rounded-pill">Submit</button>
+    </form>
+</div>
+{% endblock body %}

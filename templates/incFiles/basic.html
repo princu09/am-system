@@ -1,0 +1,113 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock title %}</title>
+    <link rel="favicon" href="{% static 'logo.png' %}" type="image/png">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <link rel="stylesheet" href="{% static 'css/register.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap_custom.css' %}">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+
+    <!-- Owl Carousel -->
+    <link rel="stylesheet" href="{% static 'owl-carousel/owl.carousel.css' %}">
+    <link rel="stylesheet" href="{% static 'owl-carousel/owl.carousel.min.css' %}">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{% static 'font-awesome/css/all.css' %}">
+
+    <!-- Data Table -->
+    <link rel="stylesheet" href="{% static 'data-table/datatables.css' %}">
+
+    <!-- Chart JS -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand font-weight-bold" href="#">AM System</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            {% if user.is_authenticated %}
+
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link {% if "dashboard" in request.path %} menu-active {% endif %}" href="dashboard"><i
+                            class="fas fa-tachometer-alt"></i> Dashboard</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle {% if "add_employee" in request.path %} menu-active {% elif "detail_employee" in request.path %} menu-active {% endif %}"
+                        href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                        <i class="fas fa-users"></i> Employee
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/add_employee">Add Employee</a>
+                        <a class="dropdown-item" href="/detail_employee">Detail Employee</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle {% if "add_attendance" in request.path %} menu-active {% elif "detail_attendance" in request.path %} menu-active {% endif %}"
+                        href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                        <i class="fas fa-user-clock"></i> Attendance
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/add_attendance">Add Attendance</a>
+                        <a class="dropdown-item" href="/detail_attendance">Detail Attendance</a>
+                    </div>
+                </li>
+            </ul>
+            {% endif %}
+            {% if user.is_authenticated %}
+            <div class="ml-auto mr-3">
+                <a class="text-dark" href="/logout"><i class="fas fa-sign-out"></i> Logout</a>
+            </div>
+
+            {% else %}
+            <div class="ml-auto mr-3">
+                <a class="{% if "login" in request.path or "register" in request.path %} menu-active {% endif %} text-dark"
+                    href="login"><i class="fas fa-lock"></i> Login</a>
+            </div>
+            {% endif %}
+        </div>
+    </nav>
+
+    {% block body %}{% endblock body %}
+
+    <!-- jQuery File -->
+    <script src="{% static 'jquery-3.5.1.min.js' %}"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+
+    <!-- owl carousel -->
+    <script src="{% static 'owl-carousel/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'owl-carousel/owl.carousel.js' %}"></script>
+    <script src="{% static 'js/owl-carousel.js' %}"></script>
+
+    <!-- Data Table JS -->
+    <script src="{% static 'data-table/datatables.js' %}"></script>
+    <script src="{% static 'data-table/main.js' %}"></script>
+    <script src="{% static 'data-table/sum.js' %}"></script>
+
+    <!-- Chart JS -->
+    <script src="{% static 'chart.js' %}"></script>
+    <script src="//cdn.datatables.net/plug-ins/1.10.25/api/sum().js"></script>
+
+</body>
+
+</html>

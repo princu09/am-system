@@ -1,0 +1,55 @@
+{% extends './incFiles/basic.html' %}
+{% block title %}Detail Employee{% endblock title %}
+{% block body %}
+{% load static %}
+{% load django_template_maths %}
+<div class="container-fluid mt-5">
+    <table id="table_id" class="display">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Salary</th>
+                <th>Contact</th>
+                <th>Email</th>
+                <th>Gander</th>
+                <th>Address</th>
+                <th>City</th>
+                <th>Pincode</th>
+                <th>State</th>
+                <th>Country</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for x in employee %}
+            <tr>
+                <td>{{x.id}}</td>
+                <td>{{x.first_Name}}</td>
+                <td>{{x.last_Name}}</td>
+                <td>{% widthratio x.salary 30 x.totalDay %}</td>
+                <td>{{x.contact}}</td>
+                <td>{{x.email}}</td>
+                <td>{{x.gander}}</td>
+                <td>{{x.address}}</td>
+                <td>{{x.city}}</td>
+                <td>{{x.pincode}}</td>
+                <td>{{x.state}}</td>
+                <td>{{x.country}}</td>
+                <td>
+                    <a href="/update_employee/{{x.id}}"><button class="btn btn-primary btn-sm"><i
+                                class="fas fa-user-edit"></i></button></a>
+                    <a href="/delete_employee/{{x.id}}"><button class="btn btn-danger btn-sm"><i
+                                class="fas fa-trash"></i></button></a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot class="font-weight-bold text-right">
+        <td colspan="3">Total Salary : </td>
+        <td colspan="10" id="salary" class="text-left"></td>
+        </tfoot>
+    </table>
+</div>
+{% endblock body %}

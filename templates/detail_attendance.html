@@ -1,0 +1,37 @@
+{% extends './incFiles/basic.html' %}
+{% block title %}Detail Attendance{% endblock title %}
+{% block body %}
+{% load static %}
+<div class="container mt-5">
+    <table id="table_id" class="display">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Employee</th>
+                <th>Date</th>
+                <th>In Time</th>
+                <th>Out Time</th>
+                <th>Desc</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for x in attedance %}
+
+            <tr>
+                <td>{{x.id}}</td>
+                <td>{{x.employee}}</td>
+                <td>{{x.date}}</td>
+                <td>{{x.in_time}}</td>
+                <td>{{x.out_time}}</td>
+                <td>{{x.desc}}</td>
+                <td>
+                    <a href="/delete_attedance/{{x.id}}"><button class="btn btn-danger btn-sm"><i
+                                class="fas fa-trash"></i></button></a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock body %}

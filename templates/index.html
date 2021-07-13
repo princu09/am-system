@@ -1,0 +1,35 @@
+{% extends './incFiles/basic.html' %}
+{% block title %}Attendance Management{% endblock title %}
+{% block body %}
+{% load static %}
+{% if user.is_authenticated %}
+<input type="hidden" id="empLen" value="{{empLen}}">
+<input type="hidden" id="atteLen" value="{{atteLen}}">
+<div class="container mt-5">
+        <div class="row">
+                <div class="container col-md-5">
+                        <canvas id="myChart" width="300" height="200"></canvas>
+                </div>
+
+                <div class="container col-md-3 d-flex flex-column mt-4">
+                        <a href="/add_employee"><button class="my-2 btn btn-md btn-block btn-dark rounded-pill">Add
+                                        Employee</button></a>
+                        <a href="/detail_employee"><button
+                                        class="my-2 btn btn-md btn-block btn-secondary rounded-pill">Details
+                                        Employee</button></a>
+                        <a href="/add_attendance"><button class="my-2 btn btn-md btn-block btn-dark rounded-pill">Add
+                                        Attendance</button></a>
+                        <a href="/detail_attendance"><button
+                                        class="my-2 btn btn-md btn-block btn-secondary rounded-pill">Details
+                                        Attendance</button></a>
+                </div>
+        </div>
+
+</div>
+{% else %}
+<div class="container d-flex flex-column align-items-center justify-content-center" style="height:600px">
+        <p class="display-4 text-center font-weight-bold">Please Login To Access This Site.</p>
+        <a href="/login" class="h3 text-danger font-weight-bold"><i class="fas fa-lock"></i> Login Here</a>
+</div>
+{% endif %}
+{% endblock body %}
